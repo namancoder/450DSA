@@ -31,65 +31,67 @@ int dictionaryContains(string word)
 //     return false;
 // }
 
-// bool wordBreak(string str)
+bool wordBreak(string str)
+{
+    int size = str.size();
+    if (size == 0)
+        return true;
+    bool wb[size + 1];
+    memset(wb, 0, sizeof(wb));
+
+    for (int i = 1; i <= size; i++) //start from 1 character words and increasing it to size aka n.
+    {
+        if (wb[i] == false && dictionaryContains(str.substr(0, i)))
+            wb[i] = true;
+
+        if (wb[i] == true)
+        {
+            if (i == size)
+                return true;
+            for (int j = i + 1; j <= size; j++) //prefix left behind with wb[i]=true meaning prefix is a word in dictionary and checking for words in sufix
+            {
+                if (wb[j] == false && dictionaryContains(str.substr(i, j - i)))
+                    wb[j] = true;
+
+                if (j == size && wb[j] == true)
+                    return true;
+            }
+        }
+    }
+    cout << str << "   ";
+    for (int i = 0; i <= size; i++)
+    {
+        cout << wb[i] << " ";
+    }
+    cout << endl;
+    return false;
+}
+
+/*// bool wordBreak(string str)
 // {
-//     int size = str.size();
-//     if (size == 0)
-//         return true;
-//     bool wb[size + 1];
-//     memset(wb, 0, sizeof(wb));
+//     int i = 0, j = 1;
 
-//     for (int i = 1; i <= size; i++) //start from 1 character words and increasing it to size aka n.
+//     int n = str.size();
+
+//     int totalSegnmented = 0;
+//     while (j <= n)
 //     {
-//         if (wb[i] == false && dictionaryContains(str.substr(0, i)))
-//             wb[i] = true;
-
-//         if (wb[i] == true)
+//         if (dictionaryContains(str.substr(i, j)))
 //         {
-//             if (i == size)
-//                 return true;
-//             for (int j = i + 1; j <= size; j++) //prefix left behind with wb[i]=true meaning prefix is a word in dictionary and checking for words in sufix
-//             {
-//                 if (wb[j] == false && dictionaryContains(str.substr(i, j - i)))
-//                     wb[j] = true;
-
-//                 if (j == size && wb[j] == true)
-//                     return true;
-//             }
+//             totalSegnmented += j - i;
+//             i = j;
+//             j++;
 //         }
+//         else
+//             j++;
 //     }
-//     cout << str << "   ";
-//     for (int i = 0; i <= size; i++)
-//     {
-//         cout << wb[i] << " ";
-//     }
-//     cout << endl;
+//     if (totalSegnmented == n)
+//         return true;
+
 //     return false;
 // }
 
-bool wordBreak(string str)
-{
-    int i = 0, j = 1;
-
-    int n = str.size();
-
-    int totalSegnmented = 0;
-    while (j <= n)
-    {
-        if (dictionaryContains(str.substr(i, j)))
-        {
-            totalSegnmented += j - i;
-            i = j;
-            j++;
-        }
-        else
-            j++;
-    }
-    if (totalSegnmented == n)
-        return true;
-
-    return false;
-}
+*/
 int main()
 {
     wordBreak("ilikesamsung") ? cout << "Yes\n" : cout << "No\n";
