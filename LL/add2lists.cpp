@@ -37,20 +37,21 @@ void push(Node **head_ref, int new_data)
 
 Node *addTwoLists(Node *first, Node *second)
 {
-    Node *res = NULL;
-    Node *temp, *prev = NULL;
-
+    Node *temp, *prev, *res = NULL;
     int carry = 0, sum;
 
     while (first || second)
     {
+        //ADD SUM
         sum = carry + (first ? first->data : 0) + (second ? second -> data : 0);
         carry = (sum >= 10) ? 1 : 0;
         sum = sum % 10;
-        temp = newNode(sum);
 
+        // MAKE NODES OF NEW SUM AND ATTACH IT TO prev
+        temp = newNode(sum);
+        
         if (res == NULL)
-            res = temp;
+            res = temp;//Head of the new LL
         else
             prev->next = temp;
 
