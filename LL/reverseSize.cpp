@@ -24,6 +24,9 @@ Node* reverse(Node* head, int k)
 	int count = 0;
 
 	/*reverse first k nodes of the linked list */
+
+
+
 	while (current != NULL && count < k) {
 		next = current->next;
 		current->next = prev;
@@ -35,6 +38,7 @@ Node* reverse(Node* head, int k)
 	/* next is now a pointer to (k+1)th node
 	Recursively call for the list starting from current.
 	And make rest of the list as next of first node */
+	
 	if (next != NULL)
 		head->next = reverse(next, k);
 
@@ -76,7 +80,7 @@ int main()
 
 	/* Created Linked list
 	is 1->2->3->4->5->6->7->8->9 */
-	push(&head, 9);
+	//push(&head, 9);
 	push(&head, 8);
 	push(&head, 7);
 	push(&head, 6);
