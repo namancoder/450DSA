@@ -17,14 +17,16 @@ int main()
     int prod[n];
     prod[0]=1;
 
-    // calculate product of all elements of array in consecutive manner and store it in prod array which is like product of array from left side with prod[0]==1.
+    // calculate product of all elements of array in consecutive manner and store it in prod array which is like product of array from left side excluding the element at the given index with prod[0]==1.
     
+
     for(int i=1;i<n;i++)
     {
         prod[i]=prod[i-1]*a[i-1];
     }
 
     // now we need to calculate product of all elements of array from right side and store it in prod array which is like product of array from right side.
+    // checking something
     int right=1;
     for(int i=n-1;i>=0;i--)
     {
